@@ -25,3 +25,11 @@ def random_password():
     password = str(random.randint(10000, 99999999))
     return password
 
+@pytest.fixture(scope='function')
+def browser_account_authorization(browser):
+    button_login = WebDriverWait(browser, 5).until(expected_conditions.element_to_be_clickable(Locators.login_button))
+    button_login.click()
+    WebDriverWait(browser, 10).until(expected_conditions.visibility_of_element_located(Locators.imput_email)).send_keys('sergeishiraev15999@yandex.ru')
+    WebDriverWait(browser, 10).until(expected_conditions.visibility_of_element_located(Locators.imput_password)).send_keys('12345678')
+    WebDriverWait(browser, 10).until(expected_conditions.element_to_be_clickable(Locators.imput_button)).click()
+    yield browser

@@ -8,27 +8,19 @@ from selenium.webdriver.common.by import By
 
 
 class TestsLogin:
-    def test_login_via_main_page_button(self,browser):
-        button_login = WebDriverWait(browser, 5).until(expected_conditions.element_to_be_clickable(Locators.login_button))
-        button_login.click()
-        WebDriverWait(browser, 10).until(expected_conditions.visibility_of_element_located(Locators.imput_email)).send_keys('sergeishiraev15999@yandex.ru')
-        WebDriverWait(browser, 10).until(expected_conditions.visibility_of_element_located(Locators.imput_password)).send_keys('12345678')
-        WebDriverWait(browser, 10).until(expected_conditions.element_to_be_clickable(Locators.imput_button)).click()
-        button_profile = WebDriverWait(browser, 10).until(expected_conditions.element_to_be_clickable(Locators.profile_button))
+    def test_login_via_main_page_button(self,browser_account_authorization):
+        button_profile = WebDriverWait(browser_account_authorization, 10).until(expected_conditions.element_to_be_clickable(Locators.profile_button))
         button_profile.click()
         time.sleep(3)
-        assert browser.current_url == 'https://stellarburgers.nomoreparties.site/account/profile'
+        url_profile = 'https://stellarburgers.nomoreparties.site/account/profile'
+        assert browser_account_authorization.current_url == url_profile
 
-    def test_login_via_personal_cabinet_button(self, browser):
-        button_profile = WebDriverWait(browser, 5).until(expected_conditions.element_to_be_clickable(Locators.profile_button))
-        button_profile.click()
-        WebDriverWait(browser, 10).until(expected_conditions.visibility_of_element_located(Locators.imput_email)).send_keys('sergeishiraev15999@yandex.ru')
-        WebDriverWait(browser, 10).until(expected_conditions.visibility_of_element_located(Locators.imput_password)).send_keys('12345678')
-        WebDriverWait(browser, 10).until(expected_conditions.element_to_be_clickable(Locators.imput_button)).click()
-        button_profile = WebDriverWait(browser, 10).until(expected_conditions.element_to_be_clickable(Locators.profile_button))
+    def test_login_via_personal_cabinet_button(self, browser_account_authorization):
+        button_profile = WebDriverWait(browser_account_authorization, 10).until(expected_conditions.element_to_be_clickable(Locators.profile_button))
         button_profile.click()
         time.sleep(3)
-        assert browser.current_url == 'https://stellarburgers.nomoreparties.site/account/profile'
+        url_profile = 'https://stellarburgers.nomoreparties.site/account/profile'
+        assert browser_account_authorization.current_url == url_profile
 
     def test_login_via_registration_form_button(self, browser):
         button_login = WebDriverWait(browser, 5).until(expected_conditions.element_to_be_clickable(Locators.login_button))

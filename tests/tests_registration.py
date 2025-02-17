@@ -37,11 +37,11 @@ class TestsRegistration:
 
         input_name = WebDriverWait(browser, 10).until(expected_conditions.visibility_of_element_located(Locators.name_input))
         input_name.send_keys('Любое Имя')
-        time.sleep(2)
+        time.sleep(1)
 
         input_email = WebDriverWait(browser, 10).until(expected_conditions.visibility_of_element_located(Locators.email_input))
         input_email.send_keys(random_email)
-        time.sleep(2)
+        time.sleep(1)
 
         input_password = WebDriverWait(browser, 10).until(expected_conditions.visibility_of_element_located(Locators.password_input))
         input_password.send_keys('123')
